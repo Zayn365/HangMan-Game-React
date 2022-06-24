@@ -66,3 +66,21 @@
   text-shadow: #9e9e9e;
   font-size: 16px;
 } 
+
+#reset {
+  width: auto;
+  background-color: rebeccapurple;
+  box-shadow: 0 6px purple;
+  margin-bottom: 1em;
+  padding: 0 1em 0 1em;
+
+}
+#reset:hover {
+  background-color: purple;
+}
+
+#reset:disabled {
+  background: #b387af;
+  color: #070303;
+  box-shadow: 0 6px #9e9e9e;
+}
