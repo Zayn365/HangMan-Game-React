@@ -48,7 +48,6 @@ resetBtn = () => {
         value={ltr}
         onClick={this.handleGuess}
         disabled={this.state.guessed.has(ltr)}
-        className="Hangman-btns"
       >
         {ltr}
       </button>
@@ -58,27 +57,34 @@ resetBtn = () => {
     render () {
       const wrong = this.state.nWrong;
       const gameOver = wrong >= this.props.maxWrong;
-      const isWinner = this.guessedWord().join("") === this.props.answer;
+      const isWinner = this.guessedWord().join("") === this.state.answer;
       const alt = `${this.state.nWrong}/${this.props.maxWrong} guesses`;
       let gameState = this.generateButtons();
       if(isWinner) gameState = "YOU WIN!!!!";
       if(gameOver) gameState = "YOU LOSE!!!"; 
       console.log(this.state.answer);
-      console.log(isWinner)
+      // console.log(isWinner)
         return (
           <>
            <img className="logo" src='https://ccrs2006.github.io/Hangman-Game/assets/images2/logo.png' alt='logo' />
+           
             <div className="Hangman">
-               <img src={ !gameOver ? wrong+`.jpg` : "rage.png"} 
+            
+              {!isWinner ? <img src={ !gameOver ? wrong+`.jpg` : "rage.png"} 
                style={!gameOver ? {} : {width: '27%'} }
-               alt={alt} />
+               alt={alt} /> : <img src="win.jpg" alt="WINNER" />} 
+            
                <p className="para">WRONG GUESSES: {wrong}</p>
+            
                <p className="Hangman-word">
                 {!gameOver ? this.guessedWord() : this.state.answer}
                 </p>
-               <p className="para">{gameState}</p>
+               
+               <p className="Hangman-btns">{gameState}</p>
+                
                 <button id="reset" onClick={this.resetBtn}>Reset</button>
-            </div></>
+            </div>
+            </>
         )
     }
 }
